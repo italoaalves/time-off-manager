@@ -1,0 +1,46 @@
+version: "3.9"
+
+services:
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_HOST: ${MYSQL_ROOT_HOST}
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+    ports:
+      - "3306:3306"
+    networks:
+      - off-time-network
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  off-time-manager:
+    build: .
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+      - bundle:/usr/local/bundle
+    ports:
+      - "3001:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+    links:
+      - db
+    networks:
+      - off-time-network
+
+networks:
+  off-time-network:
+
+volumes:
+  mysql_data:
+  bundle:
