@@ -11,6 +11,7 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
+  host: <%= ENV["MYSQL_HOST"]%>
   database: <%= ENV["MYSQL_DATABASE"]%>
   pool: 5
   username: <%= ENV["MYSQL_USER"]%>
@@ -24,6 +25,7 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
+  host: <%= ENV["MYSQL_HOST"]%>
   database: <%= ENV["MYSQL_DATABASE"]%>
   pool: 5
   username: <%= ENV["MYSQL_USER"]%>
@@ -34,6 +36,7 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
+  host: <%= ENV["MYSQL_HOST"]%>
   database: <%= ENV["MYSQL_DATABASE"]%>
   pool: 5
   username: <%= ENV["MYSQL_USER"]%>
