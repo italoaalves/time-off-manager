@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-User.create(
+employee = User.create!(
     name: "Jonh Doe",
     email: "jonhd@acme.com",
     position: "Software Engineer",
@@ -15,7 +15,7 @@ User.create(
     is_on_vacation: false
 )
 
-User.create(
+User.create!(
     name: "Jane Doe",
     email: "janed@acme.com",
     position: "Manager",
@@ -25,3 +25,4 @@ User.create(
     is_on_vacation: false
 )
 
+Vacation.create!(year: "2023", user: employee, balance: 30, expires_at: 1.year.after)

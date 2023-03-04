@@ -1,0 +1,32 @@
+<%= form_with(model: off_time) do |form| %>
+  <% if off_time.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(off_time.errors.count, "error") %> prohibited this off_time from being saved:</h2>
+
+      <ul>
+        <% off_time.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :vacation_id, style: "display: block" %>
+    <%= form.text_field :vacation_id %>
+  </div>
+
+  <div>
+    <%= form.label :starts_at, style: "display: block" %>
+    <%= form.date_field :starts_at %>
+  </div>
+
+  <div>
+    <%= form.label :ends_at, style: "display: block" %>
+    <%= form.date_field :ends_at %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
