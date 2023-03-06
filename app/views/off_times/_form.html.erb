@@ -1,32 +1,32 @@
-<%= form_with(model: off_time) do |form| %>
-  <% if off_time.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(off_time.errors.count, "error") %> prohibited this off_time from being saved:</h2>
+<%= form_with(model: [@vacation, off_time]) do |form| %>
+  <div class="container w-50">
+    <% if off_time.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(off_time.errors.count, "error") %> prohibited this off_time from being saved:</h2>
 
-      <ul>
-        <% off_time.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% off_time.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mb-3">
+      <%= form.label :starts_at, class: "form-label" %>
+      <%= form.date_field :starts_at, class: "form-control" %>
     </div>
-  <% end %>
 
-  <div>
-    <%= form.label :vacation_id, style: "display: block" %>
-    <%= form.text_field :vacation_id %>
-  </div>
+    <div class="mb-3">
+      <%= form.label :ends_at, class: "form-label" %>
+      <%= form.date_field :ends_at, class: "form-control" %>
+    </div>
 
-  <div>
-    <%= form.label :starts_at, style: "display: block" %>
-    <%= form.date_field :starts_at %>
-  </div>
-
-  <div>
-    <%= form.label :ends_at, style: "display: block" %>
-    <%= form.date_field :ends_at %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <div class="mb-3">
+      <%= form.submit "Create",class: "btn btn-primary" %>
+    </div>
+    <div>
+      <%= link_to "Back to listing", vacations_path %>
+    </div>
   </div>
 <% end %>

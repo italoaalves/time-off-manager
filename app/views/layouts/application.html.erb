@@ -11,6 +11,18 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between">
+        <%= link_to "Offtime manager", vacations_path, class: "navbar-brand"%>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link disabled text-danger" href="#">Logout</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="container-fluid">
+      <%= yield %>
+    </main>
   </body>
 </html>

@@ -11,7 +11,7 @@ employee = User.create!(
     position: "Software Engineer",
     password: "password",
     role: 0,
-    starting_date: 1.year.ago,
+    starting_date: 2.years.ago,
     is_on_vacation: false
 )
 
@@ -26,3 +26,6 @@ User.create!(
 )
 
 Vacation.create!(year: "2023", user: employee, balance: 30, expires_at: 1.year.after)
+vac = Vacation.create!(year: "2022", user: employee, balance: 30, expires_at: Date.today - 1.day)
+
+OffTime.create!(vacation: vac, user_id: vac.user.id, starts_at: Date.today - 6.months, ends_at: Date.today - 5.months)

@@ -17,7 +17,7 @@ class OffTimesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create off_time" do
     assert_difference("OffTime.count") do
-      post off_times_url, params: { off_time: { ends_at: @off_time.ends_at, starts_at: @off_time.starts_at, vacation_id: @off_time.vacation_id } }
+      post off_times_url, params: { off_time: { ends_at: @off_time.ends_at, starts_at: @off_time.starts_at, user_id: @off_time.user_id, vacation_id: @off_time.vacation_id } }
     end
 
     assert_redirected_to off_time_url(OffTime.last)
@@ -34,7 +34,7 @@ class OffTimesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update off_time" do
-    patch off_time_url(@off_time), params: { off_time: { ends_at: @off_time.ends_at, starts_at: @off_time.starts_at, vacation_id: @off_time.vacation_id } }
+    patch off_time_url(@off_time), params: { off_time: { ends_at: @off_time.ends_at, starts_at: @off_time.starts_at, user_id: @off_time.user_id, vacation_id: @off_time.vacation_id } }
     assert_redirected_to off_time_url(@off_time)
   end
 

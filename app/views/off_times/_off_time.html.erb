@@ -1,17 +1,11 @@
-<div id="<%= dom_id off_time %>">
-  <p>
-    <strong>Vacation:</strong>
-    <%= off_time.vacation_id %>
-  </p>
-
-  <p>
+<div id="<%= dom_id off_time %>" class="d-flex">
+  <p class="p-2 m-0">
     <strong>Starts at:</strong>
-    <%= off_time.starts_at %>
+    <%= off_time.starts_at.strftime("%B %d, %y") %>
   </p>
 
-  <p>
+  <p class="p-2 m-0">
     <strong>Ends at:</strong>
-    <%= off_time.ends_at %>
+    <%= off_time.ends_at.strftime("%B %d, %y") %>
   </p>
-
 </div>

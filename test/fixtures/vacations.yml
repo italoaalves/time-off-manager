@@ -4,10 +4,10 @@ one:
   year: MyString
   user: one
   balance: 1
-  expires_at: 2023-03-04
+  expires_at: 2023-03-06
 
 two:
   year: MyString
   user: two
   balance: 1
-  expires_at: 2023-03-04
+  expires_at: 2023-03-06

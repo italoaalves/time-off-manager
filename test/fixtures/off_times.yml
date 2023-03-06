@@ -2,10 +2,12 @@
 
 one:
   vacation: one
-  starts_at: 2023-03-04
-  ends_at: 2023-03-04
+  user: one
+  starts_at: 2023-03-06
+  ends_at: 2023-03-06
 
 two:
   vacation: two
-  starts_at: 2023-03-04
-  ends_at: 2023-03-04
+  user: two
+  starts_at: 2023-03-06
+  ends_at: 2023-03-06

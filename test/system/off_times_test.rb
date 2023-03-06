@@ -16,6 +16,7 @@ class OffTimesTest < ApplicationSystemTestCase
 
     fill_in "Ends at", with: @off_time.ends_at
     fill_in "Starts at", with: @off_time.starts_at
+    fill_in "User", with: @off_time.user_id
     fill_in "Vacation", with: @off_time.vacation_id
     click_on "Create Off time"
 
@@ -29,6 +30,7 @@ class OffTimesTest < ApplicationSystemTestCase
 
     fill_in "Ends at", with: @off_time.ends_at
     fill_in "Starts at", with: @off_time.starts_at
+    fill_in "User", with: @off_time.user_id
     fill_in "Vacation", with: @off_time.vacation_id
     click_on "Update Off time"
 
