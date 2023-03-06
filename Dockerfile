@@ -8,6 +8,9 @@ RUN apt-get update -qq && apt-get install -yq --no-install-recommends \
     libpq-dev \
     default-libmysqlclient-dev \
     libvips \
+    nodejs \
+    npm \
+    yarn \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV LANG=C.UTF-8 \
@@ -18,7 +21,7 @@ RUN gem update --system && gem install bundler
 
 WORKDIR /opt/app
 
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["./bin/docker-entrypoint.sh"]
 
 EXPOSE 3000
 
