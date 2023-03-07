@@ -9,10 +9,14 @@ class Vacation < ApplicationRecord
   end
 
   def has_balance(days)
-    ((balance.days - days) + 1).positive?
+    ((balance - days) + 1).positive?
   end
 
   def withdraw(days)
-    balance = balance.days - days
+    self.balance -= days
+  end
+
+  def deposit(days)
+    self.balance += days
   end
 end

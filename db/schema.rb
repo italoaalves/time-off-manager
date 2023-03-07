@@ -13,8 +13,8 @@
 ActiveRecord::Schema[7.0].define(version: 2023_03_06_230559) do
   create_table "off_times", charset: "utf8mb3", force: :cascade do |t|
     t.bigint "vacation_id", null: false
-    t.date "starts_at"
-    t.date "ends_at"
+    t.date "starts_at", null: false
+    t.date "ends_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["vacation_id"], name: "index_off_times_on_vacation_id"
@@ -38,10 +38,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_230559) do
   end
 
   create_table "vacations", charset: "utf8mb3", force: :cascade do |t|
-    t.string "year"
+    t.string "year", null: false
     t.bigint "user_id", null: false
-    t.integer "balance"
-    t.date "expires_at"
+    t.integer "balance", null: false
+    t.date "expires_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_vacations_on_user_id"

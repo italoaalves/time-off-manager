@@ -13,7 +13,10 @@ class OffTimesController < ApplicationController
     @off_time.user = current_user
 
     respond_to do |format|
-      if @off_time.save
+      if @off_time.valid?
+        @vacation.withdraw(@off_time.days_count)
+        @off_time.save
+        @vacation.save
         format.html { redirect_to vacations_path, notice: 'Entry saved.' }
         format.json { render :show, status: :ok, location: @off_time }
       else
@@ -25,8 +28,9 @@ class OffTimesController < ApplicationController
 
   # DELETE /off_times/1 or /off_times/1.json
   def destroy
+    @vacation.withdraw(@off_time.days_count)
+    @vacation.save
     @off_time.destroy
-
     respond_to do |format|
       format.html { redirect_to vacations_path, notice: "Entry removed." }
       format.json { head :no_content }

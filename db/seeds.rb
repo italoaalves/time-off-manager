@@ -26,6 +26,13 @@ User.create!(
 )
 
 Vacation.create!(year: "2023", user: employee, balance: 30, expires_at: 1.year.after)
-vac = Vacation.create!(year: "2022", user: employee, balance: 0, expires_at: Date.today - 1.day)
+vac = Vacation.create!(year: "2022", user: employee, balance: 30, expires_at: Date.today - 1.day)
 
-OffTime.create!(vacation: vac, starts_at: Date.today - 6.months, ends_at: Date.today - 5.months)
+off = vac.off_times.build(starts_at: Date.today - 6.months - 23.days, ends_at: Date.today - 6.months)
+off.user = employee
+if off.save
+    vac.withdraw(off.days_count)
+    vac.save
+else
+	puts off.errors.messages
+end
