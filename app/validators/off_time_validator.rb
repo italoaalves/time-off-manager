@@ -33,7 +33,7 @@ class OffTimeValidator < ActiveModel::Validator
   end
 
   def overlaping_dates(record)
-    
+
   end
 end
 
