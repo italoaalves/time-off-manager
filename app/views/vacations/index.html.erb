@@ -1,5 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
+<h2 class="text-center m-4">Plan your time offs</h2>
+
 <div class="row justify-content-center  ">
   <div class="col-sm-12 col-lg-6">
     <% unless @vacations.empty? %>
@@ -8,7 +10,7 @@
             <div class="accordion-item">
                 <h2 class="accordion-header" id="heading-<%= index %>">
                   <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-<%= index %>" aria-expanded="true" aria-controls="collapse-<%= index %>">
-                    <%= vacation.year %>
+                    <%= vacation.year %> - Expire<%= vacation.expired? ? "d": "s"%>: <%= vacation.expires_at.strftime("%B %d, %y") %>
                   </button>
                 </h2>
                 <div id="collapse-<%= index %>" class="accordion-collapse collapse show" aria-labelledby="heading-<%= index %>" data-bs-parent="#offTimes">
@@ -23,11 +25,14 @@
                           <% end %>
                         </div>
                       <% end %>
-                      <%=
-                          link_to_unless vacation.expired?, "New entry", new_vacation_off_time_path(:vacation_id => vacation.id), class: "btn btn-success" do
-                            link_to "New entry", new_vacation_off_time_path(:vacation_id => vacation.id), class: "btn btn-success disabled"
-                          end
-                      %>
+                      <div class="d-flex align-items-center justify-content-between">
+                        <% if not vacation.expired? %>
+                          <%= link_to "New entry", new_vacation_off_time_path(:vacation_id => vacation.id), class: "btn btn-success" %>
+                        <% else %>
+                          <%= link_to "New entry", new_vacation_off_time_path(:vacation_id => vacation.id), class: "btn btn-success disabled" %>
+                        <% end %>
+                        <p class="m-0">You ha<%= vacation.expired? ? "d" : "ve" %> <%= vacation.balance %> days left.</p>
+                      </div>
                   </div>
                 </div>
             </div>
