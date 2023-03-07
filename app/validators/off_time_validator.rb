@@ -19,7 +19,7 @@ class OffTimeValidator < ActiveModel::Validator
         record.errors.add(:base, message: 'Starting date must be in the future.')
       end
       if overlaping_dates(record)
-        record.errors.add(:base, message: 'Starting date must be in the future.')
+        record.errors.add(:base, message: 'Dates are overlaping with previous entry.')
       end
     end
   end
@@ -33,7 +33,15 @@ class OffTimeValidator < ActiveModel::Validator
   end
 
   def overlaping_dates(record)
-
+    clean_list = record.vacation.off_times.reject {|off_time| off_time.id == record.id }
+    puts clean_list
+    clean_list.each do |off_time|
+      if record.starts_at.between?(off_time.starts_at, off_time.ends_at) or
+         record.ends_at.between?(off_time.starts_at, off_time.ends_at)
+        return true
+      end
+    end
+    false
   end
 end
 
