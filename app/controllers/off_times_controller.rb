@@ -28,7 +28,7 @@ class OffTimesController < ApplicationController
 
   # DELETE /off_times/1 or /off_times/1.json
   def destroy
-    @vacation.withdraw(@off_time.days_count)
+    @vacation.deposit(@off_time.days_count)
     @vacation.save
     @off_time.destroy
     respond_to do |format|
