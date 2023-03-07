@@ -3,7 +3,7 @@ class VacationsController < ApplicationController
 
   # GET /vacations or /vacations.json
   def index
-    @vacations = current_user.vacations.all
+    @vacations = current_user.vacations.all.order(:year).reverse_order
   end
 
   private

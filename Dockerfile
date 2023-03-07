@@ -11,6 +11,8 @@ RUN apt-get update -qq && apt-get install -yq --no-install-recommends \
     nodejs \
     npm \
     yarn \
+    # whenever
+    cron \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV LANG=C.UTF-8 \
@@ -18,6 +20,9 @@ ENV LANG=C.UTF-8 \
   BUNDLE_RETRY=3
 
 RUN gem update --system && gem install bundler
+
+# Create empty crontab file
+RUN crontab -l | { cat; echo ""; } | crontab -
 
 WORKDIR /opt/app
 

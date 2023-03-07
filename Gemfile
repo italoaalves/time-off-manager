@@ -75,3 +75,5 @@ gem "devise", "~> 4.9"
 gem "bootstrap", "~> 5.2"
 
 gem "sidekiq", "~> 7.0"
+
+gem "whenever", "~> 1.0"
