@@ -1,5 +1,5 @@
 <%= form_with(model: [@vacation, off_time]) do |form| %>
-  <div class="container w-50">
+  <div class="container">
     <% if off_time.errors.any? %>
       <div style="color: red">
         <h2><%= pluralize(off_time.errors.count, "error") %> prohibited this off_time from being saved:</h2>
