@@ -23,7 +23,7 @@ class OffTimesController < ApplicationController
   # POST /off_times or /off_times.json
   def create
     @off_time = @vacation.off_times.build(off_time_params)
-    @off_time.user_id = User.first.id
+    @off_time.user = current_user
 
     respond_to do |format|
       if @off_time.save

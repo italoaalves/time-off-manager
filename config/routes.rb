@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'vacations#index'
   resources :vacations do
     resources :off_times
   end
