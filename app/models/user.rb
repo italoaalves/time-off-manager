@@ -6,6 +6,8 @@ class User < ApplicationRecord
   enum role: [:employee, :admin]
   after_initialize :set_default_role, :if => :new_record?
 
+  has_many :vacations
+
   private
 
   def set_default_role
