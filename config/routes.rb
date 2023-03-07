@@ -1,11 +1,14 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
+  devise_for :users
+
+  authenticate :user, -> (u) { u.admin? } do
+    mount Sidekiq::Web => '/admin/sidekiq'
+  end
+
   root 'vacations#index'
   resources :vacations do
     resources :off_times
   end
-  devise_for :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
 end

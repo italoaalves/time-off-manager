@@ -3,9 +3,7 @@ version: "3.9"
 services:
   app:
     build: .
-    env_file:
-      - .env
-    command: bash -c "rm -f tmp/pids/server.pid && bin/rails s -p 3000 -b '0.0.0.0'"
+    env_file: .env
     volumes:
       - .:/opt/app
       - bundle:/usr/local/bundle
@@ -15,8 +13,9 @@ services:
       - HISTFILE=/usr/src/app/log/.bash_history
     depends_on:
       - db
+      - redis
     networks:
-      - content-service-network
+      - off-time-network
 
   db:
     image: mysql
@@ -31,13 +30,37 @@ services:
     ports:
       - "3306:3306"
     networks:
-      - content-service-network
+      - off-time-network
     volumes:
       - mysql_data:/var/lib/mysql
 
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+    networks:
+      - off-time-network
+
+  sidekiq:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - app
+      - db
+      - redis
+    volumes:
+      - .:/opt/app
+      - bundle:/usr/local/bundle
+    env_file: .env
+    entrypoint: ./bin/sidekiq-entrypoint.sh
+    networks:
+      - off-time-network
+
 volumes:
   mysql_data:
+  redis_data:
   bundle:
 
 networks:
-  content-service-network:
+  off-time-network:
