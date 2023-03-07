@@ -15,6 +15,11 @@
                     <% vacation.off_times.each do |off_time| %>
                       <div class="d-flex align-items-center p-1 mb-2 bg-light">
                         <%= render off_time %>
+                        <% unless vacation.expired? %>
+                          <%= button_to "remove", [vacation, off_time], method: :delete, class: "btn btn-sm btn-danger" %>
+                        <% else %>
+                          <%= button_to "remove", [vacation, off_time],  class: "btn btn-sm btn-danger disabled" %>
+                        <% end %>
                       </div>
                     <% end %>
                     <%=

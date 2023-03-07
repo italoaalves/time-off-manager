@@ -54,7 +54,7 @@ class OffTimesController < ApplicationController
     @off_time.destroy
 
     respond_to do |format|
-      format.html { redirect_to off_times_url, notice: "Off time was successfully destroyed." }
+      format.html { redirect_to vacations_path, notice: "Entry removed." }
       format.json { head :no_content }
     end
   end
