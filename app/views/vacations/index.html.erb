@@ -8,7 +8,7 @@
             <div class="accordion-item">
                 <h2 class="accordion-header" id="heading-<%= index %>">
                   <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-<%= index %>" aria-expanded="true" aria-controls="collapse-<%= index %>">
-                    <%= vacation.year %> - Expire<%= vacation.expired? ? "d": "s"%>: <%= vacation.expires_at.strftime("%B %d, %y") %>
+                    <%= vacation.year %> -&nbsp<span class="text-<%= vacation.expired? ? 'danger' : 'success' %> ml-1">Expire<%= vacation.expired? ? "d": "s"%>: <%= vacation.expires_at.strftime("%B %d, %y") %></span>
                   </button>
                 </h2>
                 <div id="collapse-<%= index %>" class="accordion-collapse collapse show" aria-labelledby="heading-<%= index %>" data-bs-parent="#offTimes">
