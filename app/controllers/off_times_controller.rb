@@ -1,6 +1,6 @@
 class OffTimesController < ApplicationController
   before_action :set_vacation
-  before_action :set_off_time, only: %i[ destroy ]
+  before_action :set_off_time, only: %i[destroy]
 
   # GET /off_times/new
   def new
@@ -32,23 +32,24 @@ class OffTimesController < ApplicationController
     @vacation.save
     @off_time.destroy
     respond_to do |format|
-      format.html { redirect_to vacations_path, notice: "Entry removed." }
+      format.html { redirect_to vacations_path, notice: 'Entry removed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_off_time
-      @off_time = OffTime.find(params[:id])
-    end
 
-    def set_vacation
-      @vacation = Vacation.find(params[:vacation_id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_off_time
+    @off_time = OffTime.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def off_time_params
-      params.require(:off_time).permit(:starts_at, :ends_at)
-    end
+  def set_vacation
+    @vacation = Vacation.find(params[:vacation_id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def off_time_params
+    params.require(:off_time).permit(:starts_at, :ends_at)
+  end
 end

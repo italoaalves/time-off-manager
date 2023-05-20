@@ -8,7 +8,7 @@ class Vacation < ApplicationRecord
     expires_at.to_datetime.past?
   end
 
-  def has_balance(days)
+  def balance?(days)
     ((balance - days) + 1).positive?
   end
 

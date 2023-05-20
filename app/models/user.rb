@@ -3,8 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable,
          :recoverable, :rememberable, :validatable
-  enum role: [:employee, :admin]
-  after_initialize :set_default_role, :if => :new_record?
+  enum role: %i[employee admin]
+  after_initialize :set_default_role, if: :new_record?
 
   has_many :vacations
 
