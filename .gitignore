@@ -36,3 +36,6 @@
 
 # Ignore local env
 .env
+
+# Ignore asdf files
+.tool-versions
