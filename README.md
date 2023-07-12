@@ -1,6 +1,6 @@
 # Off-time Manager
 
-This is a team member off-time management system built with Ruby on Rails 7.
+This is a team member time-off management system built with Ruby on Rails 7.
 
 ### Initial setup
 ```bash
